@@ -1,9 +1,10 @@
+import com.besuikerd.cmap.Cmap
 import com.besuikerd.cmap.rowmapping.RowMapping
 
 object PersonMapping {
   import RowMapping._
 
-  def personMapping: RowMapping[Person] =
+  lazy val personMapping: RowMapping[Person] =
     RowMapping
       .success((Person.apply _).curried)
       .ap(byName("name"))
@@ -12,5 +13,8 @@ object PersonMapping {
       .ap(addressMapping)
 
   lazy val addressMapping: RowMapping[Address] =
-    RowMapping.success((Address.apply _).curried) ap byName[String]("street_name") ap byName[Int]("street_number")
+    RowMapping
+      .success((Address.apply _).curried)
+      .ap(byName("street_name"))
+      .ap(byPredicate(_.equalsIgnoreCase("street_number")))
 }
