@@ -1,7 +1,7 @@
 name := "cmap"
 
 lazy val root = project.in(file("."))
-  .aggregate(jvm, js)
+  .aggregate(jvm, js, poi, shared, testShared)
 
 lazy val shared = project.in(file("shared"))
 
