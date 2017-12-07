@@ -1,0 +1,9 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: codestar/circleci-scala-sbt-git:scala-2.12.2-sbt-0.13.15
+    steps:
+      - checkout
+      - run:
+          command: sbt test
