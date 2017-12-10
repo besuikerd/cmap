@@ -1,9 +1,27 @@
 package com.besuikerd.cmap
 
-class ApplyCurriedBuilder[Ctx, Err] extends AnyRef {
+import com.besuikerd.cmap.typeclass.Monoid
 
-//  def apply[P, T1, T2](p: T1 => T2 => P)(m1: Parser[Ctx, Err, T1], m2: Parser[Ctx, Err, T2]): Parser[Ctx, Err, P] =
-//    StaticParser.success[Ctx, Err, T1 => T2 => P](p).ap(m1).ap(m2)
+trait CmapApplicativeApplyBuilder[Context, Error] { this: CmapOps[Context, Error] =>
+
+  def apply[P, T1, T2](p: T1 => T2 => P)(m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2])(
+      implicit monoid: Monoid[Error]): Cmap[Context, Error, P] =
+    success(p).ap(m1).ap(m2)
+
+  def apply[T1, T2](m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2])(
+      implicit monoid: Monoid[Error]): Cmap[Context, Error, (T1, T2)] =
+    success((Tuple2[T1, T2] _).curried).ap(m1).ap(m2)
+
+  def apply[T1, T2, T3](m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3])(
+      implicit monoid: Monoid[Error]): Cmap[Context, Error, (T1, T2, T3)] =
+    success((Tuple3[T1, T2, T3] _).curried).ap(m1).ap(m2).ap(m3)
+
+  def apply[T1, T2, T3, T4](
+      m1: Cmap[Context, Error, T1],
+      m2: Cmap[Context, Error, T2],
+      m3: Cmap[Context, Error, T3],
+      m4: Cmap[Context, Error, T4])(implicit monoid: Monoid[Error]): Cmap[Context, Error, (T1, T2, T3, T4)] =
+    success((Tuple4[T1, T2, T3, T4] _).curried).ap(m1).ap(m2).ap(m3).ap(m4)
 
 //  def apply[P, T1, T2](p: T1 => T2 => P)(m1: Cmap[Ctx, Err, T1], m2: Cmap[Ctx, Err, T2])(
 //      implicit semigroup: Semigroup[Err]): Cmap[Ctx, Err, P] =

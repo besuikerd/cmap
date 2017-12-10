@@ -1,6 +1,6 @@
 package com.besuikerd.cmap
 
-import java.time.{LocalDate, LocalTime}
+import java.time.{Instant, LocalDate, LocalDateTime, LocalTime}
 
 package object rowmapping {
   trait RowLookup {
@@ -13,12 +13,14 @@ package object rowmapping {
   case class ByName(name: String)                    extends ColumnMatcher
 
   trait CellTransformation {
-    def transformInt: Either[RowTransformError, Int]         = transformDynamic
-    def transformString: Either[RowTransformError, String]   = transformDynamic
-    def transformBoolean: Either[RowTransformError, Boolean] = transformDynamic
-    def transformDouble: Either[RowTransformError, Double]   = transformDynamic
-    def transformDate: Either[RowTransformError, LocalDate]  = transformDynamic
-    def transformTime: Either[RowTransformError, LocalTime]  = transformDynamic
+    def transformInt: Either[RowTransformError, Int]                = transformDynamic
+    def transformString: Either[RowTransformError, String]          = transformDynamic
+    def transformBoolean: Either[RowTransformError, Boolean]        = transformDynamic
+    def transformDouble: Either[RowTransformError, Double]          = transformDynamic
+    def transformInstant: Either[RowTransformError, Instant]        = transformDynamic
+    def transformDate: Either[RowTransformError, LocalDate]         = transformDynamic
+    def transformTime: Either[RowTransformError, LocalTime]         = transformDynamic
+    def transformDateTime: Either[RowTransformError, LocalDateTime] = transformDynamic
 
     def transformDynamic[T]: Either[RowTransformError, T] =
       Left(RowTransformError("No transformation for given type implemented"))
@@ -34,6 +36,30 @@ package object rowmapping {
     }
     implicit object CellTypeString extends CellType[String] {
       override def transformation = _.transformString
+    }
+
+    implicit object CellTypeBoolean extends CellType[Boolean] {
+      override def transformation = _.transformBoolean
+    }
+
+    implicit object CellTypeDouble extends CellType[Double] {
+      override def transformation = _.transformDouble
+    }
+
+    implicit object CellTypeInstant extends CellType[Instant] {
+      override def transformation = _.transformInstant
+    }
+
+    implicit object CellTypeLocalTime extends CellType[LocalTime] {
+      override def transformation = _.transformTime
+    }
+
+    implicit object CellTypeLocalDate extends CellType[LocalDate] {
+      override def transformation = _.transformDate
+    }
+
+    implicit object CellTypeLocalDateTime extends CellType[LocalDateTime] {
+      override def transformation = _.transformDateTime
     }
   }
 

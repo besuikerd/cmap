@@ -1,7 +1,8 @@
 package com.besuikerd.cmap.poi
 
 import java.io.InputStream
-import java.util.Locale
+import java.time.{LocalDate, LocalTime, ZoneId}
+import java.util.{Calendar, Locale}
 
 import com.besuikerd.cmap.poi.ExcelParser.HeaderIndex
 import com.besuikerd.cmap.rowmapping
@@ -9,6 +10,7 @@ import com.besuikerd.cmap.rowmapping._
 import org.apache.poi.ss.usermodel._
 import org.apache.poi.ss.util.CellReference
 import org.apache.poi.ss.usermodel.{CellType => PoiCellType}
+import sun.util.calendar.BaseCalendar
 
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success, Try}
@@ -125,9 +127,23 @@ class ExcelCellTransformation(val cell: Cell, val dataFormatter: DataFormatter, 
 
   override def transformDouble = expectCellType(PoiCellType.NUMERIC) { cell.getNumericCellValue }
 
-//  override def transformDate = expectCellType(PoiCellType.NUMERIC) { cell.getDateCellValue }
-//
-//  override def transformTime = expectCellType(PoiCellType.NUMERIC) { cell.getDateCellValue }
+  override def transformInstant = expectCellType(PoiCellType.NUMERIC) { cell.getDateCellValue.toInstant }
+
+  override def transformDate = expectCellType(PoiCellType.NUMERIC) {
+    cell.getDateCellValue.toInstant.atZone(ZoneId.systemDefault()).toLocalDate
+  }
+
+  override def transformTime = expectCellType(PoiCellType.NUMERIC) {
+    val date = cell.getDateCellValue
+    LocalTime.of(date.getHours, date.getMinutes, date.getSeconds)
+  }
+
+  override def transformDateTime = {
+    for {
+      date <- transformDate.right
+      time <- transformTime.right
+    } yield date.atTime(time)
+  }
 
   def expectCellType[T](expected: PoiCellType)(transform: => T): Either[RowTransformError, T] =
     if (expected != cell.getCellTypeEnum) {

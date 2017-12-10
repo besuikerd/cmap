@@ -9,12 +9,15 @@ Static context parser combinators for scala
 Parsing data structures with a specific context is a common use case.
 Keeping this code understandable can be challenging.
 Cmap allows you to create composable parsers.
-The base trait wrap a parsing function under a certain context
+The base trait wrap a parsing function under a certain context.
+
 ```scala
 trait Cmap[Context, Error, T] {
   def runCmap(context: Context): Either[Error, T]
 }
 ```
+
+There are many operators to compose `Cmap` instances.
 
 ## Parsing tables to structured data
 
@@ -30,7 +33,7 @@ For example consider the following data set:
 |John|Doe    |42 |Baker Street  |123          |
 |Jane|Doe    |44 |West  Street  |456          |
 
-
+A mapping that can process this data can be specified with `RowMapping`:
 
 ```scala
 case class Person(name: String, surname: String, age: Int, address: Address)

@@ -16,10 +16,10 @@ object RowMapping extends CmapOps[Context, Error] {
   def byPredicate[T](columnPredicate: ColumnPredicate)(implicit cellType: CellType[T]): RowMapping[T] =
     byMatcher(ByPredicate(columnPredicate))
 
-//  object Implicits {
-//    import scala.language.implicitConversions
-//    implicit def stringToMapping[T](value: String)(implicit obtain: Obtain[T]): RowMapping[T] = byName(value)
-//    implicit def predicateMapping[T](predicate: ColumnPredicate)(implicit obtain: Obtain[T]): RowMapping[T] =
-//      byPredicate(predicate)
-//  }
+  object Implicits {
+    import scala.language.implicitConversions
+    implicit def stringToMapping[T](value: String)(implicit cellType: CellType[T]): RowMapping[T] = byName(value)
+    implicit def predicateMapping[T](predicate: ColumnPredicate)(implicit cellType: CellType[T]): RowMapping[T] =
+      byPredicate(predicate)
+  }
 }
