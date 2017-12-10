@@ -3,96 +3,109 @@ package com.besuikerd.cmap
 import com.besuikerd.cmap.typeclass.Monoid
 
 trait CmapApplicativeApplyBuilder[Context, Error] { this: CmapOps[Context, Error] =>
+  // format: off
 
-  def apply[P, T1, T2](p: T1 => T2 => P)(m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2])(
-      implicit monoid: Monoid[Error]): Cmap[Context, Error, P] =
-    success(p).ap(m1).ap(m2)
+  //Curried functions
+  def apply[P, T1, T2](p: T1 => T2 => P)(m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2])(implicit monoid: Monoid[Error]): Cmap[Context, Error, P] = success(p).ap(m1).ap(m2)
+  def apply[P, T1, T2, T3](p: T1 => T2 => T3 => P)(m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3])(implicit monoid: Monoid[Error]): Cmap[Context, Error, P] = success(p).ap(m1).ap(m2).ap(m3)
+  def apply[P, T1, T2, T3, T4](p: T1 => T2 => T3 => T4 => P)(m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4])(implicit monoid: Monoid[Error]): Cmap[Context, Error, P] = success(p).ap(m1).ap(m2).ap(m3).ap(m4)
+  def apply[P, T1, T2, T3, T4, T5](p: T1 => T2 => T3 => T4 => T5 => P)(m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5])(implicit monoid: Monoid[Error]): Cmap[Context, Error, P] = success(p).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5)
+  def apply[P, T1, T2, T3, T4, T5, T6](p: T1 => T2 => T3 => T4 => T5 => T6 => P)(m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6])(implicit monoid: Monoid[Error]): Cmap[Context, Error, P] = success(p).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6)
+  def apply[P, T1, T2, T3, T4, T5, T6, T7](p: T1 => T2 => T3 => T4 => T5 => T6 => T7 => P)(m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7])(implicit monoid: Monoid[Error]): Cmap[Context, Error, P] = success(p).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7)
+  def apply[P, T1, T2, T3, T4, T5, T6, T7, T8](p: T1 => T2 => T3 => T4 => T5 => T6 => T7 => T8 => P)(m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8])(implicit monoid: Monoid[Error]): Cmap[Context, Error, P] = success(p).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8)
+  def apply[P, T1, T2, T3, T4, T5, T6, T7, T8, T9](p: T1 => T2 => T3 => T4 => T5 => T6 => T7 => T8 => T9 => P)(m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9])(implicit monoid: Monoid[Error]): Cmap[Context, Error, P] = success(p).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9)
+  def apply[P, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10](p: T1 => T2 => T3 => T4 => T5 => T6 => T7 => T8 => T9 => T10 => P)(m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9], m10: Cmap[Context, Error, T10])(implicit monoid: Monoid[Error]): Cmap[Context, Error, P] = success(p).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9).ap(m10)
+  def apply[P, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11](p: T1 => T2 => T3 => T4 => T5 => T6 => T7 => T8 => T9 => T10 => T11 => P)(m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9], m10: Cmap[Context, Error, T10], m11: Cmap[Context, Error, T11])(implicit monoid: Monoid[Error]): Cmap[Context, Error, P] = success(p).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9).ap(m10).ap(m11)
+  def apply[P, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12](p: T1 => T2 => T3 => T4 => T5 => T6 => T7 => T8 => T9 => T10 => T11 => T12 => P)(m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9], m10: Cmap[Context, Error, T10], m11: Cmap[Context, Error, T11], m12: Cmap[Context, Error, T12])(implicit monoid: Monoid[Error]): Cmap[Context, Error, P] = success(p).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9).ap(m10).ap(m11).ap(m12)
+  def apply[P, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13](p: T1 => T2 => T3 => T4 => T5 => T6 => T7 => T8 => T9 => T10 => T11 => T12 => T13 => P)(m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9], m10: Cmap[Context, Error, T10], m11: Cmap[Context, Error, T11], m12: Cmap[Context, Error, T12], m13: Cmap[Context, Error, T13])(implicit monoid: Monoid[Error]): Cmap[Context, Error, P] = success(p).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9).ap(m10).ap(m11).ap(m12).ap(m13)
+  def apply[P, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14](p: T1 => T2 => T3 => T4 => T5 => T6 => T7 => T8 => T9 => T10 => T11 => T12 => T13 => T14 => P)(m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9], m10: Cmap[Context, Error, T10], m11: Cmap[Context, Error, T11], m12: Cmap[Context, Error, T12], m13: Cmap[Context, Error, T13], m14: Cmap[Context, Error, T14])(implicit monoid: Monoid[Error]): Cmap[Context, Error, P] = success(p).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9).ap(m10).ap(m11).ap(m12).ap(m13).ap(m14)
+  def apply[P, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15](p: T1 => T2 => T3 => T4 => T5 => T6 => T7 => T8 => T9 => T10 => T11 => T12 => T13 => T14 => T15 => P)(m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9], m10: Cmap[Context, Error, T10], m11: Cmap[Context, Error, T11], m12: Cmap[Context, Error, T12], m13: Cmap[Context, Error, T13], m14: Cmap[Context, Error, T14], m15: Cmap[Context, Error, T15])(implicit monoid: Monoid[Error]): Cmap[Context, Error, P] = success(p).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9).ap(m10).ap(m11).ap(m12).ap(m13).ap(m14).ap(m15)
+  def apply[P, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16](p: T1 => T2 => T3 => T4 => T5 => T6 => T7 => T8 => T9 => T10 => T11 => T12 => T13 => T14 => T15 => T16 => P)(m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9], m10: Cmap[Context, Error, T10], m11: Cmap[Context, Error, T11], m12: Cmap[Context, Error, T12], m13: Cmap[Context, Error, T13], m14: Cmap[Context, Error, T14], m15: Cmap[Context, Error, T15], m16: Cmap[Context, Error, T16])(implicit monoid: Monoid[Error]): Cmap[Context, Error, P] = success(p).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9).ap(m10).ap(m11).ap(m12).ap(m13).ap(m14).ap(m15).ap(m16)
+  def apply[P, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17](p: T1 => T2 => T3 => T4 => T5 => T6 => T7 => T8 => T9 => T10 => T11 => T12 => T13 => T14 => T15 => T16 => T17 => P)(m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9], m10: Cmap[Context, Error, T10], m11: Cmap[Context, Error, T11], m12: Cmap[Context, Error, T12], m13: Cmap[Context, Error, T13], m14: Cmap[Context, Error, T14], m15: Cmap[Context, Error, T15], m16: Cmap[Context, Error, T16], m17: Cmap[Context, Error, T17])(implicit monoid: Monoid[Error]): Cmap[Context, Error, P] = success(p).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9).ap(m10).ap(m11).ap(m12).ap(m13).ap(m14).ap(m15).ap(m16).ap(m17)
+  def apply[P, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18](p: T1 => T2 => T3 => T4 => T5 => T6 => T7 => T8 => T9 => T10 => T11 => T12 => T13 => T14 => T15 => T16 => T17 => T18 => P)(m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9], m10: Cmap[Context, Error, T10], m11: Cmap[Context, Error, T11], m12: Cmap[Context, Error, T12], m13: Cmap[Context, Error, T13], m14: Cmap[Context, Error, T14], m15: Cmap[Context, Error, T15], m16: Cmap[Context, Error, T16], m17: Cmap[Context, Error, T17], m18: Cmap[Context, Error, T18])(implicit monoid: Monoid[Error]): Cmap[Context, Error, P] = success(p).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9).ap(m10).ap(m11).ap(m12).ap(m13).ap(m14).ap(m15).ap(m16).ap(m17).ap(m18)
+  def apply[P, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19](p: T1 => T2 => T3 => T4 => T5 => T6 => T7 => T8 => T9 => T10 => T11 => T12 => T13 => T14 => T15 => T16 => T17 => T18 => T19 => P)(m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9], m10: Cmap[Context, Error, T10], m11: Cmap[Context, Error, T11], m12: Cmap[Context, Error, T12], m13: Cmap[Context, Error, T13], m14: Cmap[Context, Error, T14], m15: Cmap[Context, Error, T15], m16: Cmap[Context, Error, T16], m17: Cmap[Context, Error, T17], m18: Cmap[Context, Error, T18], m19: Cmap[Context, Error, T19])(implicit monoid: Monoid[Error]): Cmap[Context, Error, P] = success(p).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9).ap(m10).ap(m11).ap(m12).ap(m13).ap(m14).ap(m15).ap(m16).ap(m17).ap(m18).ap(m19)
+  def apply[P, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20](p: T1 => T2 => T3 => T4 => T5 => T6 => T7 => T8 => T9 => T10 => T11 => T12 => T13 => T14 => T15 => T16 => T17 => T18 => T19 => T20 => P)(m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9], m10: Cmap[Context, Error, T10], m11: Cmap[Context, Error, T11], m12: Cmap[Context, Error, T12], m13: Cmap[Context, Error, T13], m14: Cmap[Context, Error, T14], m15: Cmap[Context, Error, T15], m16: Cmap[Context, Error, T16], m17: Cmap[Context, Error, T17], m18: Cmap[Context, Error, T18], m19: Cmap[Context, Error, T19], m20: Cmap[Context, Error, T20])(implicit monoid: Monoid[Error]): Cmap[Context, Error, P] = success(p).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9).ap(m10).ap(m11).ap(m12).ap(m13).ap(m14).ap(m15).ap(m16).ap(m17).ap(m18).ap(m19).ap(m20)
+  def apply[P, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21](p: T1 => T2 => T3 => T4 => T5 => T6 => T7 => T8 => T9 => T10 => T11 => T12 => T13 => T14 => T15 => T16 => T17 => T18 => T19 => T20 => T21 => P)(m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9], m10: Cmap[Context, Error, T10], m11: Cmap[Context, Error, T11], m12: Cmap[Context, Error, T12], m13: Cmap[Context, Error, T13], m14: Cmap[Context, Error, T14], m15: Cmap[Context, Error, T15], m16: Cmap[Context, Error, T16], m17: Cmap[Context, Error, T17], m18: Cmap[Context, Error, T18], m19: Cmap[Context, Error, T19], m20: Cmap[Context, Error, T20], m21: Cmap[Context, Error, T21])(implicit monoid: Monoid[Error]): Cmap[Context, Error, P] = success(p).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9).ap(m10).ap(m11).ap(m12).ap(m13).ap(m14).ap(m15).ap(m16).ap(m17).ap(m18).ap(m19).ap(m20).ap(m21)
+  def apply[P, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22](p: T1 => T2 => T3 => T4 => T5 => T6 => T7 => T8 => T9 => T10 => T11 => T12 => T13 => T14 => T15 => T16 => T17 => T18 => T19 => T20 => T21 => T22 => P)(m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9], m10: Cmap[Context, Error, T10], m11: Cmap[Context, Error, T11], m12: Cmap[Context, Error, T12], m13: Cmap[Context, Error, T13], m14: Cmap[Context, Error, T14], m15: Cmap[Context, Error, T15], m16: Cmap[Context, Error, T16], m17: Cmap[Context, Error, T17], m18: Cmap[Context, Error, T18], m19: Cmap[Context, Error, T19], m20: Cmap[Context, Error, T20], m21: Cmap[Context, Error, T21], m22: Cmap[Context, Error, T22])(implicit monoid: Monoid[Error]): Cmap[Context, Error, P] = success(p).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9).ap(m10).ap(m11).ap(m12).ap(m13).ap(m14).ap(m15).ap(m16).ap(m17).ap(m18).ap(m19).ap(m20).ap(m21).ap(m22)
 
-  def apply[T1, T2](m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2])(
-      implicit monoid: Monoid[Error]): Cmap[Context, Error, (T1, T2)] =
-    success((Tuple2[T1, T2] _).curried).ap(m1).ap(m2)
 
-  def apply[T1, T2, T3](m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3])(
-      implicit monoid: Monoid[Error]): Cmap[Context, Error, (T1, T2, T3)] =
-    success((Tuple3[T1, T2, T3] _).curried).ap(m1).ap(m2).ap(m3)
+  //Tuples
+  def apply[T1, T2](m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2])(implicit monoid: Monoid[Error]): Cmap[Context, Error, (T1, T2)] = success((Tuple2[T1, T2] _).curried).ap(m1).ap(m2)
+  def apply[T1, T2, T3](m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3])(implicit monoid: Monoid[Error]): Cmap[Context, Error, (T1, T2, T3)] = success((Tuple3[T1, T2, T3] _).curried).ap(m1).ap(m2).ap(m3)
+  def apply[T1, T2, T3, T4](m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4])(implicit monoid: Monoid[Error]): Cmap[Context, Error, (T1, T2, T3, T4)] = success((Tuple4[T1, T2, T3, T4] _).curried).ap(m1).ap(m2).ap(m3).ap(m4)
+  def apply[T1, T2, T3, T4, T5](m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5])(implicit monoid: Monoid[Error]): Cmap[Context, Error, (T1, T2, T3, T4, T5)] = success((Tuple5[T1, T2, T3, T4, T5] _).curried).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5)
+  def apply[T1, T2, T3, T4, T5, T6](m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6])(implicit monoid: Monoid[Error]): Cmap[Context, Error, (T1, T2, T3, T4, T5, T6)] = success((Tuple6[T1, T2, T3, T4, T5, T6] _).curried).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6)
+  def apply[T1, T2, T3, T4, T5, T6, T7](m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7])(implicit monoid: Monoid[Error]): Cmap[Context, Error, (T1, T2, T3, T4, T5, T6, T7)] = success((Tuple7[T1, T2, T3, T4, T5, T6, T7] _).curried).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7)
+  def apply[T1, T2, T3, T4, T5, T6, T7, T8](m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8])(implicit monoid: Monoid[Error]): Cmap[Context, Error, (T1, T2, T3, T4, T5, T6, T7, T8)] = success((Tuple8[T1, T2, T3, T4, T5, T6, T7, T8] _).curried).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8)
+  def apply[T1, T2, T3, T4, T5, T6, T7, T8, T9](m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9])(implicit monoid: Monoid[Error]): Cmap[Context, Error, (T1, T2, T3, T4, T5, T6, T7, T8, T9)] = success((Tuple9[T1, T2, T3, T4, T5, T6, T7, T8, T9] _).curried).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9)
+  def apply[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10](m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9], m10: Cmap[Context, Error, T10])(implicit monoid: Monoid[Error]): Cmap[Context, Error, (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10)] = success((Tuple10[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10] _).curried).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9).ap(m10)
+  def apply[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11](m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9], m10: Cmap[Context, Error, T10], m11: Cmap[Context, Error, T11])(implicit monoid: Monoid[Error]): Cmap[Context, Error, (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11)] = success((Tuple11[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11] _).curried).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9).ap(m10).ap(m11)
+  def apply[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12](m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9], m10: Cmap[Context, Error, T10], m11: Cmap[Context, Error, T11], m12: Cmap[Context, Error, T12])(implicit monoid: Monoid[Error]): Cmap[Context, Error, (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12)] = success((Tuple12[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12] _).curried).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9).ap(m10).ap(m11).ap(m12)
+  def apply[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13](m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9], m10: Cmap[Context, Error, T10], m11: Cmap[Context, Error, T11], m12: Cmap[Context, Error, T12], m13: Cmap[Context, Error, T13])(implicit monoid: Monoid[Error]): Cmap[Context, Error, (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13)] = success((Tuple13[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13] _).curried).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9).ap(m10).ap(m11).ap(m12).ap(m13)
+  def apply[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14](m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9], m10: Cmap[Context, Error, T10], m11: Cmap[Context, Error, T11], m12: Cmap[Context, Error, T12], m13: Cmap[Context, Error, T13], m14: Cmap[Context, Error, T14])(implicit monoid: Monoid[Error]): Cmap[Context, Error, (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14)] = success((Tuple14[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14] _).curried).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9).ap(m10).ap(m11).ap(m12).ap(m13).ap(m14)
+  def apply[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15](m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9], m10: Cmap[Context, Error, T10], m11: Cmap[Context, Error, T11], m12: Cmap[Context, Error, T12], m13: Cmap[Context, Error, T13], m14: Cmap[Context, Error, T14], m15: Cmap[Context, Error, T15])(implicit monoid: Monoid[Error]): Cmap[Context, Error, (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15)] = success((Tuple15[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15] _).curried).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9).ap(m10).ap(m11).ap(m12).ap(m13).ap(m14).ap(m15)
+  def apply[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16](m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9], m10: Cmap[Context, Error, T10], m11: Cmap[Context, Error, T11], m12: Cmap[Context, Error, T12], m13: Cmap[Context, Error, T13], m14: Cmap[Context, Error, T14], m15: Cmap[Context, Error, T15], m16: Cmap[Context, Error, T16])(implicit monoid: Monoid[Error]): Cmap[Context, Error, (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16)] = success((Tuple16[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16] _).curried).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9).ap(m10).ap(m11).ap(m12).ap(m13).ap(m14).ap(m15).ap(m16)
+  def apply[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17](m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9], m10: Cmap[Context, Error, T10], m11: Cmap[Context, Error, T11], m12: Cmap[Context, Error, T12], m13: Cmap[Context, Error, T13], m14: Cmap[Context, Error, T14], m15: Cmap[Context, Error, T15], m16: Cmap[Context, Error, T16], m17: Cmap[Context, Error, T17])(implicit monoid: Monoid[Error]): Cmap[Context, Error, (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17)] = success((Tuple17[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17] _).curried).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9).ap(m10).ap(m11).ap(m12).ap(m13).ap(m14).ap(m15).ap(m16).ap(m17)
+  def apply[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18](m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9], m10: Cmap[Context, Error, T10], m11: Cmap[Context, Error, T11], m12: Cmap[Context, Error, T12], m13: Cmap[Context, Error, T13], m14: Cmap[Context, Error, T14], m15: Cmap[Context, Error, T15], m16: Cmap[Context, Error, T16], m17: Cmap[Context, Error, T17], m18: Cmap[Context, Error, T18])(implicit monoid: Monoid[Error]): Cmap[Context, Error, (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18)] = success((Tuple18[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18] _).curried).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9).ap(m10).ap(m11).ap(m12).ap(m13).ap(m14).ap(m15).ap(m16).ap(m17).ap(m18)
+  def apply[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19](m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9], m10: Cmap[Context, Error, T10], m11: Cmap[Context, Error, T11], m12: Cmap[Context, Error, T12], m13: Cmap[Context, Error, T13], m14: Cmap[Context, Error, T14], m15: Cmap[Context, Error, T15], m16: Cmap[Context, Error, T16], m17: Cmap[Context, Error, T17], m18: Cmap[Context, Error, T18], m19: Cmap[Context, Error, T19])(implicit monoid: Monoid[Error]): Cmap[Context, Error, (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19)] = success((Tuple19[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19] _).curried).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9).ap(m10).ap(m11).ap(m12).ap(m13).ap(m14).ap(m15).ap(m16).ap(m17).ap(m18).ap(m19)
+  def apply[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20](m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9], m10: Cmap[Context, Error, T10], m11: Cmap[Context, Error, T11], m12: Cmap[Context, Error, T12], m13: Cmap[Context, Error, T13], m14: Cmap[Context, Error, T14], m15: Cmap[Context, Error, T15], m16: Cmap[Context, Error, T16], m17: Cmap[Context, Error, T17], m18: Cmap[Context, Error, T18], m19: Cmap[Context, Error, T19], m20: Cmap[Context, Error, T20])(implicit monoid: Monoid[Error]): Cmap[Context, Error, (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20)] = success((Tuple20[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20] _).curried).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9).ap(m10).ap(m11).ap(m12).ap(m13).ap(m14).ap(m15).ap(m16).ap(m17).ap(m18).ap(m19).ap(m20)
+  def apply[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21](m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9], m10: Cmap[Context, Error, T10], m11: Cmap[Context, Error, T11], m12: Cmap[Context, Error, T12], m13: Cmap[Context, Error, T13], m14: Cmap[Context, Error, T14], m15: Cmap[Context, Error, T15], m16: Cmap[Context, Error, T16], m17: Cmap[Context, Error, T17], m18: Cmap[Context, Error, T18], m19: Cmap[Context, Error, T19], m20: Cmap[Context, Error, T20], m21: Cmap[Context, Error, T21])(implicit monoid: Monoid[Error]): Cmap[Context, Error, (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21)] = success((Tuple21[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21] _).curried).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9).ap(m10).ap(m11).ap(m12).ap(m13).ap(m14).ap(m15).ap(m16).ap(m17).ap(m18).ap(m19).ap(m20).ap(m21)
+  def apply[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22](m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4], m5: Cmap[Context, Error, T5], m6: Cmap[Context, Error, T6], m7: Cmap[Context, Error, T7], m8: Cmap[Context, Error, T8], m9: Cmap[Context, Error, T9], m10: Cmap[Context, Error, T10], m11: Cmap[Context, Error, T11], m12: Cmap[Context, Error, T12], m13: Cmap[Context, Error, T13], m14: Cmap[Context, Error, T14], m15: Cmap[Context, Error, T15], m16: Cmap[Context, Error, T16], m17: Cmap[Context, Error, T17], m18: Cmap[Context, Error, T18], m19: Cmap[Context, Error, T19], m20: Cmap[Context, Error, T20], m21: Cmap[Context, Error, T21], m22: Cmap[Context, Error, T22])(implicit monoid: Monoid[Error]): Cmap[Context, Error, (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22)] = success((Tuple22[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, T17, T18, T19, T20, T21, T22] _).curried).ap(m1).ap(m2).ap(m3).ap(m4).ap(m5).ap(m6).ap(m7).ap(m8).ap(m9).ap(m10).ap(m11).ap(m12).ap(m13).ap(m14).ap(m15).ap(m16).ap(m17).ap(m18).ap(m19).ap(m20).ap(m21).ap(m22)
+  //format:on
+}
 
-  def apply[T1, T2, T3, T4](
-      m1: Cmap[Context, Error, T1],
-      m2: Cmap[Context, Error, T2],
-      m3: Cmap[Context, Error, T3],
-      m4: Cmap[Context, Error, T4])(implicit monoid: Monoid[Error]): Cmap[Context, Error, (T1, T2, T3, T4)] =
-    success((Tuple4[T1, T2, T3, T4] _).curried).ap(m1).ap(m2).ap(m3).ap(m4)
+object GenBuilder extends App {
+  case class Def(name: String,
+                 typeArgs: List[TypeArg],
+                 args: List[List[Arg]],
+                 implicitArgs: Seq[Arg],
+                 body: String,
+                 returnType: TypeArg) {
+    override def toString: String =
+      s"def $name[${typeArgs.mkString(", ")}]${args.map(_.mkString("(", ", ", ")")).mkString("")}${implicitArgs
+        .mkString("(implicit ", ", ", ")")}: $returnType = $body"
+  }
+  case class TypeArg(name: String) {
+    override def toString: String = name
+  }
+  case class Arg(name: String, tpe: String) {
+    override def toString: String = s"$name: $tpe"
+  }
 
-//  def apply[P, T1, T2](p: T1 => T2 => P)(m1: Cmap[Ctx, Err, T1], m2: Cmap[Ctx, Err, T2])(
-//      implicit semigroup: Semigroup[Err]): Cmap[Ctx, Err, P] =
-//    Cmap.success[Ctx, Err, T1 => T2 => P](p).ap(m1).ap(m2)
+  def generateCurried(n: Int): Def =
+    Def("apply",
+      curriedTypeArgs(n),
+      List(curriedFnArgs(n), args(n)),
+      implicitArgs,
+      curriedBody(n),
+      returnType(returnTypeCurried)(n))
 
-  //  def apply[P, T1, T2, T3](p: T1 => T2 => T3 => P)(m1: Mapping[T1], m2: Mapping[T2], m3: Mapping[T3]): Mapping[P] =
-//    const(p).app(m1).app(m2).app(m3)
-//
-//  def apply[P, T1, T2, T3, T4](
-//                                p: T1 => T2 => T3 => T4 => P)(m1: Mapping[T1], m2: Mapping[T2], m3: Mapping[T3], m4: Mapping[T4]): Mapping[P] =
-//    const(p).app(m1).app(m2).app(m3).app(m4)
-//
-//  def apply[P, T1, T2, T3, T4, T5](p: T1 => T2 => T3 => T4 => T5 => P)(m1: Mapping[T1],
-//                                                                       m2: Mapping[T2],
-//                                                                       m3: Mapping[T3],
-//                                                                       m4: Mapping[T4],
-//                                                                       m5: Mapping[T5]): Mapping[P] =
-//    const(p).app(m1).app(m2).app(m3).app(m4).app(m5)
-//
-//  def apply[P, T1, T2, T3, T4, T5, T6](p: T1 => T2 => T3 => T4 => T5 => T6 => P)(m1: Mapping[T1],
-//                                                                                 m2: Mapping[T2],
-//                                                                                 m3: Mapping[T3],
-//                                                                                 m4: Mapping[T4],
-//                                                                                 m5: Mapping[T5],
-//                                                                                 m6: Mapping[T6]): Mapping[P] =
-//    const(p).app(m1).app(m2).app(m3).app(m4).app(m5).app(m6)
-//
-//  def apply[P, T1, T2, T3, T4, T5, T6, T7](p: T1 => T2 => T3 => T4 => T5 => T6 => T7 => P)(
-//    m1: Mapping[T1],
-//    m2: Mapping[T2],
-//    m3: Mapping[T3],
-//    m4: Mapping[T4],
-//    m5: Mapping[T5],
-//    m6: Mapping[T6],
-//    m7: Mapping[T7]): Mapping[P] =
-//    const(p).app(m1).app(m2).app(m3).app(m4).app(m5).app(m6).app(m7)
-//
-//  //scalastyle:off
-//  def apply[P, T1, T2, T3, T4, T5, T6, T7, T8](p: T1 => T2 => T3 => T4 => T5 => T6 => T7 => T8 => P)(
-//    m1: Mapping[T1],
-//    m2: Mapping[T2],
-//    m3: Mapping[T3],
-//    m4: Mapping[T4],
-//    m5: Mapping[T5],
-//    m6: Mapping[T6],
-//    m7: Mapping[T7],
-//    m8: Mapping[T8]): Mapping[P] =
-//    const(p).app(m1).app(m2).app(m3).app(m4).app(m5).app(m6).app(m7).app(m8)
-//
-//  def apply[P, T1, T2, T3, T4, T5, T6, T7, T8, T9](p: T1 => T2 => T3 => T4 => T5 => T6 => T7 => T8 => T9 => P)(
-//    m1: Mapping[T1],
-//    m2: Mapping[T2],
-//    m3: Mapping[T3],
-//    m4: Mapping[T4],
-//    m5: Mapping[T5],
-//    m6: Mapping[T6],
-//    m7: Mapping[T7],
-//    m8: Mapping[T8],
-//    m9: Mapping[T9]): Mapping[P] =
-//    const(p).app(m1).app(m2).app(m3).app(m4).app(m5).app(m6).app(m7).app(m8).app(m9)
-//
-//  def apply[P, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10](
-//                                                         p: T1 => T2 => T3 => T4 => T5 => T6 => T7 => T8 => T9 => T10 => P)(m1: Mapping[T1],
-//                                                                                                                            m2: Mapping[T2],
-//                                                                                                                            m3: Mapping[T3],
-//                                                                                                                            m4: Mapping[T4],
-//                                                                                                                            m5: Mapping[T5],
-//                                                                                                                            m6: Mapping[T6],
-//                                                                                                                            m7: Mapping[T7],
-//                                                                                                                            m8: Mapping[T8],
-//                                                                                                                            m9: Mapping[T9],
-//                                                                                                                            m10: Mapping[T10]): Mapping[P] =
-//    const(p).app(m1).app(m2).app(m3).app(m4).app(m5).app(m6).app(m7).app(m8).app(m9).app(m10)
+  def generateTuple(n: Int): Def =
+    Def("apply", typeArgs(n), List(args(n)), implicitArgs, tupleBody(n), returnType(returnTypeTuple)(n))
+
+  def typeArgs(n: Int): List[TypeArg] = (for (i <- 1 to n) yield TypeArg(s"T$i")).toList
+  def curriedTypeArgs(n: Int)         = TypeArg("P") :: typeArgs(n)
+
+  val implicitArgs: List[Arg] = List(Arg("monoid", "Monoid[Error]"))
+
+  def args(n: Int): List[Arg]          = (for (i <- 1 to n) yield Arg(s"m$i", s"Cmap[Context, Error, T$i]")).toList
+  def curriedFnArgs(n: Int): List[Arg] = List(Arg("p", (for (i <- 1 to n) yield s"T$i").mkString(" => ") + " => P"))
+
+  def curriedBody(n: Int) = s"success(p)${ap(n)}"
+
+  def tupleBody(n: Int): String  = s"success(${tupleApply(n)})${ap(n)}"
+  def tupleApply(n: Int): String = s"(Tuple$n[${typeArgs(n).mkString(", ")}] _).curried"
+  def ap(n: Int): String         = (for (i <- 1 to n) yield s".ap(m$i)").mkString("")
+
+  def returnType(res: Int => String): Int => TypeArg = n => TypeArg(s"Cmap[Context, Error, ${res(n)}]")
+  def returnTypeCurried: Int => String               = n => s"P"
+  def returnTypeTuple: Int => String                 = typeArgs(_).mkString("(", ", ", ")")
+
+  for (n <- 2 to 22) {
+    println(generateCurried(n))
+  }
+  println()
+  for (n <- 2 to 22) {
+    println(generateTuple(n))
+  }
 }
