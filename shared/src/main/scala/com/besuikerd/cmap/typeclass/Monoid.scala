@@ -17,4 +17,10 @@ object Monoid {
     override def empty                                     = List.empty
     override def append(a1: List[T], a2: List[T]): List[T] = a1 ++ a2
   }
+
+  implicit def seqMonoid[T]: SeqMonoid[T] = new SeqMonoid[T]
+  class SeqMonoid[T](val unit: Unit) extends AnyVal with Monoid[Seq[T]] {
+    override def empty                                  = List.empty
+    override def append(a1: Seq[T], a2: Seq[T]): Seq[T] = a1 ++ a2
+  }
 }

@@ -45,6 +45,10 @@ class FailCmap[Context, Error, T](error: Error) extends Cmap[Context, Error, T] 
   override def runCmap(ctx: Context) = Left(error)
 }
 
+class ResultCmap[Context, Error, T](result: Either[Error, T]) extends Cmap[Context, Error, T] {
+  override def runCmap(ctx: Context) = result
+}
+
 class ApplyCmap[Context, Error, T](cmap: Context => Either[Error, T]) extends Cmap[Context, Error, T] {
   override def runCmap(ctx: Context) = cmap.apply(ctx)
 }
@@ -65,6 +69,7 @@ trait CmapOps[Context, Error] extends AnyRef with CmapApplicativeApplyBuilder[Co
   def apply[T](cmap: Context => Either[Error, T]): Cmap[Context, Error, T] = new ApplyCmap(cmap)
   def success[T](value: T): Cmap[Context, Error, T]                        = new SuccessCmap(value)
   def fail[T](error: Error): Cmap[Context, Error, T]                       = new FailCmap(error)
+  def result[T](result: Either[Error, T]): Cmap[Context, Error, T]         = new ResultCmap(result)
 }
 
 object Cmap {

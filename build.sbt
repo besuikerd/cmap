@@ -1,7 +1,8 @@
 name := "cmap"
 
 lazy val root = project.in(file("."))
-  .aggregate(jvm, js, poi, shared, testShared)
+  .settings(Common.commonSettings)
+  .aggregate(jvm, js, poi, playJson, shared, testShared)
 
 lazy val shared = project.in(file("shared"))
 
