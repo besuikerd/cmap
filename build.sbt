@@ -20,3 +20,7 @@ lazy val js = project.in(file("js"))
 lazy val poi = project.in(file("poi"))
   .dependsOn(shared)
   .dependsOn(testShared)
+
+lazy val playJson = project.in(file("play-json"))
+  .dependsOn(shared)
+  .dependsOn(testShared)
