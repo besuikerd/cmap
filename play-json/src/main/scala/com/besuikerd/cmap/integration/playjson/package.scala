@@ -5,6 +5,6 @@ import play.api.libs.json.{JsPath, JsValue, JsonValidationError}
 
 package object playjson {
   type Context      = JsValue
-  type Error        = Seq[(JsPath, Seq[JsonValidationError])]
+  type Error        = List[(JsPath, List[JsonValidationError])]
   type CmapReads[T] = Cmap[Context, Error, T]
 }

@@ -1,12 +1,12 @@
 package com.besuikerd.cmap.rowmapping
 
-import com.besuikerd.cmap.{Cmap, CmapOps}
+import com.besuikerd.cmap._
 
 class ByMatcher[T](matcher: ColumnMatcher)(implicit cellType: CellType[T]) extends Cmap[Context, Error, T] {
   override def runCmap(ctx: Context) = ctx.apply(matcher).left.map(List(_))
 }
 
-object RowMapping extends CmapOps[Context, Error] {
+object RowMapping extends FixedCmapOps[Context, Error] {
 
   def strictEquals(value: String): ColumnPredicate     = _ == value
   def ignoreCaseEquals(value: String): ColumnPredicate = _.equalsIgnoreCase(value)

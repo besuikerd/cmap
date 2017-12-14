@@ -1,5 +1,7 @@
 name := "cmap"
 
+scalacOptions += "-Ypartial-unification"
+
 lazy val root = project.in(file("."))
   .settings(Common.commonSettings)
   .aggregate(jvm, js, poi, playJson, shared, testShared)

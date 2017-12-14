@@ -1,11 +1,15 @@
 package com.besuikerd.cmap
 
-import com.besuikerd.cmap.typeclass.Monoid
+import cats.Monoid
 
-trait CmapApplicativeApplyBuilder[Context, Error] { this: CmapOps[Context, Error] =>
+trait CmapApplicativeApplyBuilder[Context, Error] { this: FixedCmapOps[Context, Error] =>
+  import com.besuikerd.cmap.typeclass.CmapInstances._
+
   // format: off
 
   //Curried functions
+  def apply[Context, Error, P, T1](p: T1 => P)(m1: Cmap[Context, Error, T1]): Cmap[Context, Error, P] = m1.map(p(_))
+
   def apply[P, T1, T2](p: T1 => T2 => P)(m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2])(implicit monoid: Monoid[Error]): Cmap[Context, Error, P] = success(p).ap(m1).ap(m2)
   def apply[P, T1, T2, T3](p: T1 => T2 => T3 => P)(m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3])(implicit monoid: Monoid[Error]): Cmap[Context, Error, P] = success(p).ap(m1).ap(m2).ap(m3)
   def apply[P, T1, T2, T3, T4](p: T1 => T2 => T3 => T4 => P)(m1: Cmap[Context, Error, T1], m2: Cmap[Context, Error, T2], m3: Cmap[Context, Error, T3], m4: Cmap[Context, Error, T4])(implicit monoid: Monoid[Error]): Cmap[Context, Error, P] = success(p).ap(m1).ap(m2).ap(m3).ap(m4)

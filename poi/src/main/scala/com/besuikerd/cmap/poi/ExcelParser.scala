@@ -1,20 +1,18 @@
 package com.besuikerd.cmap.poi
 
 import java.io.InputStream
-import java.time.{LocalDate, LocalTime, ZoneId}
-import java.util.{Calendar, Locale}
+import java.time.{LocalTime, ZoneId}
+import java.util.Locale
 
 import com.besuikerd.cmap.poi.ExcelParser.HeaderIndex
 import com.besuikerd.cmap.rowmapping
 import com.besuikerd.cmap.rowmapping._
-import org.apache.poi.ss.usermodel._
+import org.apache.poi.ss.usermodel.{CellType => PoiCellType, _}
 import org.apache.poi.ss.util.CellReference
-import org.apache.poi.ss.usermodel.{CellType => PoiCellType}
-import sun.util.calendar.BaseCalendar
 
+import scala.collection.JavaConverters._
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success, Try}
-import scala.collection.JavaConverters._
 
 trait ExcelParser {
   type Result
@@ -91,7 +89,7 @@ trait ExcelParser {
     Try(headerToIndex(iterator.next()))
 
   def mapRow(headerMapping: HeaderIndex, row: Row)(implicit df: DataFormatter,
-                                                   evaluator: FormulaEvaluator): RowMapping[Result]#Result = {
+                                                   evaluator: FormulaEvaluator): Either[Error, Result] = {
     val rowLookup = new RowLookup {
       override def apply[T](matcher: ColumnMatcher)(implicit cellType: rowmapping.CellType[T]) = {
         val index = matcher match {

@@ -1,11 +1,12 @@
 import java.time._
-import java.time.temporal.{ChronoField, TemporalField}
 
+import cats.implicits._
 import com.besuikerd.cmap.poi.{ExcelParseResult, ExcelParser}
 import com.besuikerd.cmap.rowmapping.RowMapping
 import org.scalatest.{FlatSpec, MustMatchers}
 
 class ExcelSpec extends FlatSpec with MustMatchers {
+  import RowMapping._
 
   "ExcelParser" should "parse an excel file with valid person records" in {
 
@@ -39,7 +40,6 @@ class ExcelSpec extends FlatSpec with MustMatchers {
 
   it should "process dates correctly" in {
     val resource = "/dates.xlsx"
-    import com.besuikerd.cmap.rowmapping.RowMapping.byName
 
     val rowMapping = RowMapping(
       byName[LocalDate]("date"),

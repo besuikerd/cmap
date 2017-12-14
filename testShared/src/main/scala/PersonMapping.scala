@@ -1,3 +1,4 @@
+import cats.implicits._
 import com.besuikerd.cmap.rowmapping.RowMapping
 
 object PersonMapping {
