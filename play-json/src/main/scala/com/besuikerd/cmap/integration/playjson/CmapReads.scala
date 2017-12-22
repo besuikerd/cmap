@@ -2,6 +2,7 @@ package com.besuikerd.cmap.integration.playjson
 
 import com.besuikerd.cmap._
 import com.besuikerd.cmap.integration.playjson
+import com.besuikerd.cmap.typeclass.JsValueInstances
 import play.api.libs.json._
 
 trait CmapWithReads[T] extends Cmap[Context, Error, T] with Reads[T] {
@@ -39,6 +40,12 @@ class CmapForPath[T](path: JsPath)(implicit reads: CmapReads[T]) extends Cmap[Co
   }
 }
 object CmapReads extends FixedCmapOps[Context, Error] {
+
+  implicit val jsValueInstances: JsValueInstances = new JsValueInstances {}
+
+  def fail[T](msg: String): Cmap[Context, Error, T]     = fail(List((JsPath(), List(JsonValidationError(msg)))))
+  def asReads[T](implicit cmap: CmapReads[T]): Reads[T] = new CmapWithReadsWrapper(cmap)
+
   def fromPath[T](path: JsPath)(implicit cmap: CmapReads[T]): CmapReads[T] = new CmapForPath(path)(cmap)
   def fromReads[T](implicit reads: Reads[T]): CmapReads[T]                 = new CmapForReads[T]()(reads)
 

@@ -1,9 +1,18 @@
 package com.besuikerd.cmap.util
 
+import scala.collection.generic.CanBuildFrom
+
 object Eithers {
-  def splitEithers[L, R](seq: Seq[Either[L, R]]): (Seq[L], Seq[R]) =
-    seq.foldLeft((Seq.empty[L]), (Seq.empty[R])) {
-      case ((ls, rs), Right(r)) => (ls, rs :+ r)
-      case ((ls, rs), Left(l))  => (ls :+ l, rs)
+  def splitEithers[L, R, Coll[X] <: Traversable[X]](seq: Coll[Either[L, R]])(
+      implicit cbfL: CanBuildFrom[Coll[R], L, Coll[L]],
+      cbfR: CanBuildFrom[Coll[R], R, Coll[R]]
+  ): (Coll[L], Coll[R]) = {
+    val errors = cbfL()
+    val values = cbfR()
+    seq.foreach {
+      case Left(l)  => errors += l
+      case Right(r) => values += r
     }
+    (errors.result(), values.result())
+  }
 }

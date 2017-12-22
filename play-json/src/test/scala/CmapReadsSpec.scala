@@ -1,6 +1,5 @@
 import cats.implicits._
 import com.besuikerd.cmap.integration.playjson.CmapReads
-import com.besuikerd.cmap.typeclass.JsValueInstances._
 import org.scalatest.{EitherValues, FlatSpec, MustMatchers}
 import play.api.libs.functional.syntax._
 import play.api.libs.json._
@@ -87,6 +86,24 @@ class CmapReadsSpec extends FlatSpec with MustMatchers with EitherValues {
     val cmap = CmapReads.sequence(fromReads(Json.reads[Address]))
 
     cmap.runCmap(addressesJson) mustBe Right(addresses)
+  }
+
+  it should "fail and collect errors on deserializing sequences" in {
+    import Implicits._
+
+    val elements     = Seq(1, 2, 3)
+    val elementsJson = Writes.seq[Int].writes(elements)
+
+    val cmap: CmapReads[List[String]] = implicitly
+
+    val expectJsString = List(JsonValidationError("error.expected.jsstring"))
+
+    cmap.runCmap(elementsJson) mustBe Left(
+      List(
+        (JsPath(0), expectJsString),
+        (JsPath(1), expectJsString),
+        (JsPath(2), expectJsString)
+      ))
   }
 
   it should "deserialize recursive data structures with Option types" in {
@@ -177,7 +194,6 @@ class CmapReadsSpec extends FlatSpec with MustMatchers with EitherValues {
         fromPath(JsPath \ "mut1")(lazily { CmapReads.sequence(mutualSelfCmap1) })
       )
 
-    mutualSelfCmap1
     mutualSelfCmap1.runCmap(mutualSelf1Json) mustBe Right(mutualSelf1)
     mutualSelfCmap2.runCmap(mutualSelf2Json) mustBe Right(mutualSelf2)
   }
